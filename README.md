@@ -23,73 +23,101 @@ STEP 7: Use cross tabulation method to quantitatively analyze the relationship b
 STEP 8: Use heatmap method of representation to show relationships between two variables, one plotted on each axis.
 
 ## CODING AND OUTPUT
+```
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+
 df=pd.read_csv("/content/titanic_dataset.csv")
 print(df)
-![Screenshot 2024-09-07 063459](https://github.com/user-attachments/assets/f2c88a24-6cc8-41b9-98d4-6cfda95cbf39)
+```
+![Screenshot 2024-03-15 094409](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/d068afbe-1818-483d-b7f5-4d6f3fde42c8)
 
+```
 df.info()
+```
+![Screenshot 2024-03-15 094457](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/5cd24cf1-5ebe-4037-99f9-634c1d15ceac)
 
-![Screenshot 2024-09-07 063627](https://github.com/user-attachments/assets/00dbe0d4-625a-496e-bcdf-354396908c8b)
-
+```
 df.shape
+```
+![Screenshot 2024-03-15 094625](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/aeb29c85-fb55-4ddc-a4d3-1062e43d44c0)
 
-![Screenshot 2024-09-07 063711](https://github.com/user-attachments/assets/f19d4116-663f-416e-91b7-f00fd5f3eb17)
+```
 df.nunique()
+```
+![Screenshot 2024-03-15 094708](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/0851cc7a-aa10-450d-a7a3-703de236c564)
 
-![Screenshot 2024-09-07 063750](https://github.com/user-attachments/assets/aae1d7bc-dd32-44a2-99d7-b5d2b732473e)
-
+```
 df["Survived"].value_counts()
 per=(df["Survived"].value_counts()/df.shape[0]*100).round(2)
 per
+```
+![Screenshot 2024-03-15 095023](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/cc1261e3-4a01-48a4-a08d-ddac63b1f660)
 
-![Screenshot 2024-09-07 063851](https://github.com/user-attachments/assets/bc737d9a-91b4-4f11-80d0-46bdacbc1ec2)
-
+```
 sns.countplot(data=df,x='Survived')
 df.Pclass.unique()
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/c52edcf3-dfb6-44be-aee2-d93b54b9679c)
 
-![Screenshot 2024-09-07 063936](https://github.com/user-attachments/assets/afdadbc0-deb9-4b0d-9376-ba7988fa8eba)
-
+```
 df.rename(columns={'Sex':'Gender'},inplace=True)
 df
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/11acd9c7-4683-4ca8-a589-4f044cebe7e0)
 
-![Screenshot 2024-09-07 064031](https://github.com/user-attachments/assets/5cddff36-9970-4b00-b9fb-bd8c1352ee05)
-
+```
 sns.catplot(x="Gender",col="Survived",kind="count",data=df,height=5,aspect=.7)
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/9bcab15a-a8aa-47ca-8763-26cb318df40e)
 
-![Screenshot 2024-09-07 064115](https://github.com/user-attachments/assets/9d2e0e14-eef9-4bfc-9602-4764215ba787)
-
+```
 sns.catplot(x='Survived',hue="Gender",data=df,kind="count")
+```
 
-![Screenshot 2024-09-07 065621](https://github.com/user-attachments/assets/0a1d66ec-36be-4003-92e9-2e86e0802ab7)
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/e8987583-06b3-4b3d-9089-097dc078e957)
 
+```
 df.boxplot(column="Age",by="Survived")
-![Screenshot 2024-09-07 065712](https://github.com/user-attachments/assets/c2d0b9fd-075c-414a-a50e-04098ed2541b)
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/b3ad2f91-20d2-4980-8e56-9b0358337451)
 
+```
 sns.scatterplot(x=df["Age"],y=df["Fare"])
-![Screenshot 2024-09-07 065801](https://github.com/user-attachments/assets/4026618d-3b74-49e2-943f-94129e136e0a)
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/06690dc7-a353-44d7-9f3e-975880daa2a4)
 
+```
 sns.jointplot(x=df["Age"],y=df["Fare"],data=df)
-![Screenshot 2024-09-07 065859](https://github.com/user-attachments/assets/7020f300-7307-4474-8c17-5230430c1c24)
+```
 
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/1a818b6e-dbc1-48e4-b388-6edb554f37cb)
+
+```
 fig,ax1=plt.subplots(figsize=(8,5))
 pt=sns.boxplot(ax=ax1,x='Pclass',y='Age',hue='Gender',data=df)
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/8097795f-1c6d-4ed7-9f15-14b1f52c678a)
 
-![Screenshot 2024-09-07 065939](https://github.com/user-attachments/assets/b005c94e-3cb0-4f2b-a760-a2a5389d2781)
+```
 sns.catplot(data=df,col="Survived",x="Gender",hue="Pclass",kind="count")
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/4f75e816-c891-4f7d-b499-c615781c6b15)
 
-![Screenshot 2024-09-07 070028](https://github.com/user-attachments/assets/431ce6a7-cd73-4174-81cb-77cf41316a31)
-
+```
 corr=df.corr()
 sns.heatmap(corr,annot=True)
-![Screenshot 2024-09-07 070129](https://github.com/user-attachments/assets/dc08eb57-5fee-4109-8c22-2bd9b7eff5e4)
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/824aa31e-c281-41a9-a839-9a5ab78b90d0)
 
+```
 sns.pairplot(df)
+```
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/85698857-6e10-4a2c-932d-1f43fa72671e)
 
-![Screenshot 2024-09-07 070234](https://github.com/user-attachments/assets/52b13abf-2077-42d8-936a-fbd2bf8ea600)
+![image](https://github.com/Vanitha-SM/EXNO2DS/assets/119557985/605ceb6d-007d-45f3-8c14-6de3d2ebe60d)
 
 
 # RESULT
